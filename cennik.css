@@ -1,0 +1,377 @@
+header {
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: rgba(49, 49, 160, 0.904);
+    text-align: center;
+    margin-top: 0px;
+    width: 100%;
+    color: #ffffff;
+}
+nav,footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* odstęp między linkami */
+    background-color: #466aac;
+    padding: 20px;
+    width: 100%;
+}
+a{
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0;
+    padding-left: 0;
+    font-size: larger;
+}
+ a:hover{
+    text-decoration: underline;
+}
+main{
+    background-color: #b9d5f0;
+    padding: 0%;
+    margin: 0%;
+    height: auto;
+    overflow: hidden; 
+    padding-bottom: 0;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+}
+#dolna{
+    background-color: #6e93d6;
+}
+#wizyta{
+    text-align: center; 
+}
+#dolna img{
+    height: auto;
+    width: 25%;
+}
+#cena{
+    font-size: 25px;
+    text-decoration: dashed;
+}
+footer{
+    clear: both;
+}
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    #dolna img {
+        max-width: 100%;
+    }
+    
+    /* Responsywna nawigacja */
+    nav, footer {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    nav a, footer a {
+        font-size: 1em;
+        padding: 8px 12px;
+        display: block;
+    }
+    
+    /* Header na telefonach */
+    header {
+        padding: 10px 15px;
+    }
+    
+    header h1 {
+        font-size: 1.3em;
+        margin: 0;
+    }
+    
+    /* Główne nagłówki */
+    main h1 {
+        font-size: 1.2em;
+        margin: 15px 0;
+    }
+    
+    main h2 {
+        font-size: 1.1em;
+        margin: 12px 0;
+    }
+    
+    /* Selectory na telefonach */
+    select {
+        font-size: 16px;
+        padding: 8px;
+        margin: 8px 5px;
+        width: 90%;
+        max-width: 300px;
+    }
+    
+    /* Przyciski na telefonach */
+    button {
+        font-size: 1em;
+        padding: 8px 15px;
+        margin: 10px 5px;
+        width: auto;
+    }
+    
+    /* Cena na telefonach */
+    #cena {
+        font-size: 1.3em;
+    }
+    
+    /* Linie po bokach tytułu na telefonach */
+    .line-title {
+        gap: 10px;
+    }
+    
+    .line-title::before,
+    .line-title::after {
+        min-width: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Bardzo małe urządzenia */
+    header h1 {
+        font-size: 1em;
+    }
+    
+    main h1 {
+        font-size: 1em;
+    }
+    
+    main h2 {
+        font-size: 0.95em;
+    }
+    
+    nav a, footer a {
+        font-size: 0.9em;
+        padding: 6px 10px;
+    }
+    
+    select {
+        font-size: 14px;
+        padding: 6px;
+        margin: 5px 3px;
+    }
+    
+    button {
+        font-size: 0.9em;
+        padding: 6px 12px;
+    }
+    
+    #cena {
+        font-size: 1.1em;
+    }
+}
+
+.line-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    white-space: nowrap;
+    overflow: visible;
+}
+
+.line-title::before,
+.line-title::after {
+    content: "";
+    flex: 1 1 0;
+    min-width: 20px;
+    height: 1px;
+    background: rgba(201, 32, 32, 0.74); 
+}
+
+.line-title.light::before,
+.line-title.light::after {
+    background: rgba(255,255,255,0.25);
+}
+button{
+    font-size: large;
+    padding: 10px 20px;
+    background-color: #3149a0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+select{
+    font-size: 20px;
+    padding: 4px;
+    margin:  10px;
+    border: solid 1px blue ;
+}
+
+/* Galereia zdjęć */
+.gallery-container {
+    background-color: #b9d5f0;
+    padding: 40px 20px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.gallery-container h2 {
+    margin-bottom: 30px;
+    color: #072146;
+    font-size: 28px;
+}
+
+.gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.gallery-slides {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(70, 106, 172, 0.2);
+}
+
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide.fade {
+    animation: fade 0.5s;
+}
+
+@keyframes fade {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+.gallery-btn {
+    background-color: #466aac;
+    color: white;
+    border: none;
+    font-size: 28px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.gallery-btn:hover {
+    background-color: #3149a0;
+}
+
+.gallery-btn.prev {
+    order: -1;
+}
+
+.gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.dot.active {
+    background-color: #466aac;
+}
+
+.dot:hover {
+    background-color: #999;
+}
+
+@media (max-width: 768px) {
+    .gallery-container {
+        padding: 20px 10px;
+    }
+    
+    .gallery-container h2 {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+    }
+    
+    .gallery {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .gallery-slides {
+        width: 100%;
+        max-width: 500px;
+        height: 300px;
+    }
+    
+    .gallery-btn {
+        font-size: 20px;
+        padding: 8px 12px;
+        position: static;
+    }
+    
+    .gallery-btn.prev {
+        order: -1;
+    }
+    
+    .gallery-dots {
+        margin-top: 15px;
+        gap: 8px;
+    }
+    
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-container {
+        padding: 15px 5px;
+    }
+    
+    .gallery-container h2 {
+        font-size: 1.1em;
+    }
+    
+    .gallery-slides {
+        width: 100%;
+        max-width: 100%;
+        height: 250px;
+    }
+    
+    .gallery-btn {
+        font-size: 18px;
+        padding: 6px 10px;
+    }
+    
+    .dot {
+        width: 8px;
+        height: 8px;
+    }
+}
+#zdjecia{
+    margin: 0px;
+}
+

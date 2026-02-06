@@ -1,0 +1,315 @@
+header {
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: rgba(49, 49, 160, 0.904);
+    text-align: center;
+    margin-top: 0px;
+    width: 100%;
+    color: #ffffff;
+    
+}
+main{
+    background-color: #b9d5f0;
+    padding: 0%;
+    margin: 0%;
+    height: auto !important;
+    overflow: hidden; /* clearfix bez modyfikowania floatów */
+    padding-bottom: 0;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    width: 100%;
+}
+nav,footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* odstęp między linkami */
+    background-color: #466aac;
+    padding: 20px;
+    width: 100%;
+}
+a{
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0;
+    padding-left: 0;
+    font-size: larger;
+}
+ a:hover{
+    text-decoration: underline;
+}
+#lewa{
+    float: left;
+    font-size: larger;
+    background-color: #b9d5f0;
+    margin-bottom: 0px;
+    text-align: center;
+    margin-top: 0px;
+    
+
+}
+#lewa,
+#prawa {
+    box-sizing: border-box;
+    width: 50%;
+    padding: 20px;      
+    min-height: 360px;   
+    margin-bottom: 0;
+}
+
+#lewa ul {
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+#lewa ul li {
+    margin: 10px 0;
+}
+#lewa h3{
+    font-size: x-large;
+}
+#prawa{
+    float: right;
+    margin-top: 0px;
+    background-color: #8db5db;
+    padding-right: 50px;
+    text-align: center; 
+}
+
+#prawa img{
+    display: block;
+    margin: 0 auto;     
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; 
+    box-shadow: 3px 4px 5px rgba(0,0,0,0.3); 
+}
+#prawa h3{
+    font-size: 30px;
+}
+
+main table td{
+    border: solid 1px rgb(155, 155, 155);
+    padding: 10px;
+}
+main table{
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 25%;
+}
+
+footer{
+    clear: both;
+    background-color:rgba(49, 49, 160, 0.904) ;
+    padding: 65px;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    min-height: 80px;
+    padding-left: 160px; 
+}
+
+footer a{
+    color: #ffffff;
+    display: inline-block;
+    margin: 0 auto;
+    text-decoration: none;
+}
+
+footer p#adres{
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    color: #c0bfbf;
+    text-align: left;
+}
+
+footer a{
+    color: #ffffff;
+    display: inline-block;
+    margin: 0 auto;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    /* Układ na urządzeniach mobilnych */
+    #lewa, #prawa {
+        float: none;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: auto;
+    }
+    
+    #prawa {
+        background-color: #b9d5f0;
+        padding-right: 20px;
+    }
+    
+    /* Responsywna tabela */
+    main table {
+        margin-left: 0;
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    main table td {
+        padding: 8px 5px;
+        font-size: 0.9em;
+    }
+    
+    main table img {
+        max-width: 40px;
+        height: auto;
+    }
+    
+    /* Nawigacja na telefonach */
+    nav, footer {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    nav a, footer a {
+        font-size: 1em;
+        padding: 8px 12px;
+        display: block;
+    }
+    
+    /* Footer na telefonach */
+    footer {
+        padding: 20px;
+    }
+    
+    footer p#adres {
+        position: static;
+        transform: none;
+        margin: 0 0 15px 0;
+        text-align: center;
+        padding: 0;
+    }
+    
+    /* Header na telefonach */
+    header {
+        padding: 10px 15px;
+    }
+    
+    header h1 {
+        font-size: 1.5em;
+        margin: 0;
+    }
+    
+    /* Zmniejszone fonty na telefonach */
+    #lewa h3 {
+        font-size: 1.3em;
+    }
+    
+    #prawa h3 {
+        font-size: 1.2em;
+    }
+    
+    #lewa, #prawa {
+        font-size: 1em;
+    }
+    
+    /* Linie po bokach tytułu na telefonach */
+    .line-title {
+        gap: 10px;
+    }
+    
+    .line-title::before,
+    .line-title::after {
+        min-width: 10px;
+    }
+    
+    /* Ciekawostki i opinie na telefonach */
+    #fact-text {
+        font-size: 1.8em;
+        min-height: 60px;
+    }
+    
+    #testimony-text {
+        font-size: 1em;
+        min-height: 50px;
+    }
+    
+    #testimony-author {
+        font-size: 1em;
+    }
+    
+    /* Przyciski na telefonach */
+    button {
+        padding: 8px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Bardzo małe urządzenia */
+    header h1 {
+        font-size: 1.2em;
+    }
+    
+    nav a, footer a {
+        font-size: 0.9em;
+        padding: 6px 10px;
+    }
+    
+    #lewa h3, #prawa h3 {
+        font-size: 1.1em;
+    }
+    
+    #fact-text {
+        font-size: 1.3em;
+    }
+    
+    main table {
+        font-size: 0.85em;
+    }
+    
+    main table td {
+        padding: 5px 3px;
+    }
+    
+    main table img {
+        max-width: 30px;
+    }
+}
+
+/* linie po bokach tytułu */
+.line-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    white-space: nowrap;
+    overflow: visible;
+}
+
+.line-title::before,
+.line-title::after {
+    content: "";
+    flex: 1 1 0;
+    min-width: 20px;
+    height: 1px;
+    background: rgba(54, 95, 172, 0.74); /* kolor linii - dopasuj jeśli trzeba */
+}
+
+/* alternatywny jaśniejszy wariant (np. na ciemnym tle) */
+.line-title.light::before,
+.line-title.light::after {
+    background: rgba(255,255,255,0.25);
+}
+
+
+#fact-text{
+    font-family: georgia;
+}
+#serwis{
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.3);    
+}
+
+

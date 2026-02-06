@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O.K. Serwis EWTOM - Lokalizacja w Bedlnie</title>
+    <meta name="description" content="O.K. Serwis EWTOM - warsztat samochodowy w Zosinowie k. Bedlna. Klotyldów 8, 99-311 Zosinów. Znajdź nas na mapie.">
+    <link rel="stylesheet" href="lokalizacja.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+     <header>
+        
+        <h1>Ewtom - coś więcej niż warsztat...</h1>
+    </header>
+    <nav>
+        <a href="cennik.html">Cennik</a>
+        <a href="index.html">Strona główna</a>
+        <a href="https://okserwis.pl/serwisy/ewtom-bedlno/" target="_blank" rel="noopener noreferrer">Oficjalna strona O.K serwis</a>
+        
+    </nav>
+    <table>
+    <h1><span class="line-title">Nasza Lokalizacja - O.K. Serwis EWTOM</span></h1>
+    <h2>Gdzie nas znajdziesz?</h2>
+    
+    
+    <p class="map-desc">Klotyldów 8<br>99-311 Zosinów</p>
+    <p class="map-desc small">Tel: <a href="tel:+48732412434">+48 732 412 434</a></p>
+    <p class="map-desc small">Email: <a href="mailto:ewtom@wp.pl">ewtom@wp.pl</a></p>
+    </table>
+     <!-- Mapka-->
+    <h3>Mapa</h3>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2520.8945894235937!2d19.707271!3d52.178910!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471bed89ee855ab7%3A0x1e7d06b0a1a14364!2sO.K.%20Serwis%20EWTOM!5e0!3m2!1spl!2spl!4v1738770000000" width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <br>
+    <button id="trasa">
+        Wyznacz trasę do O.K. Serwis EWTOM
+    </button>
+    <br>
+    <br>
+    <br>
+    <footer>
+        <br>
+        
+        <a href="mailto:ewtom@wp.pl">Kontakt</a>
+    </footer>
+    <script>
+    // współrzędne 
+    const DEST_LAT = 52.1789756;
+    const DEST_LNG = 19.7072711;
+
+    document.getElementById('trasa').addEventListener('click', function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (pos) {
+                const origin = pos.coords.latitude + ',' + pos.coords.longitude;
+                const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${DEST_LAT},${DEST_LNG}&travelmode=driving`;
+                window.open(url, '_blank');
+            }, function () {
+                // gdy brak zgody/blad - otwórz mapy z samym celem (użytkownik może ustawić punkt startowy)
+                const url = `https://www.google.com/maps/dir/?api=1&destination=${DEST_LAT},${DEST_LNG}&travelmode=driving`;
+                window.open(url, '_blank');
+            }, { timeout: 10000 });
+        } else {
+            const url = `https://www.google.com/maps/dir/?api=1&destination=${DEST_LAT},${DEST_LNG}&travelmode=driving`;
+            window.open(url, '_blank');
+        }
+    });
+    </script>
+</body>
+</html>

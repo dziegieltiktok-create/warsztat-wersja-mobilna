@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cennik - O.K. Serwis EWTOM</title>
+    <link rel="stylesheet" href="cennik.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+     <header>
+        
+        <h1>Ewtom - coś więcej niż warsztat...</h1>
+    </header>
+    <nav>
+        <a href="index.html">Strona Główna</a>
+        <a href="lokalizacja.html">Nasza lokalizacja</a>
+        <a href="https://okserwis.pl/serwisy/ewtom-bedlno/" target="_blank" rel="noopener noreferrer">Oficjalna strona O.K serwis</a>
+        
+    </nav>
+    <main>
+        <h1>
+            Cennik usług - O.K. Serwis EWTOM
+        </h1>
+        <h2><span class="line-title">Wybierz usługę, którą chcesz wykonać:</span></h2>
+        <select id="serviceSelect">
+            <option value="Kontrola ciśnienia w oponach">Kontrola ciśnienia w oponach</option>
+            <option value="Kontrola oświetlenia">Kontrola oświetlenia</option>
+            <option value="Kontrola płynu chłodniczego">Kontrola płynu chłodniczego</option>
+            <option value="Wymiana rozrządu">Wymiana rozrządu</option>
+            <option value="Naprawy silnika">Naprawy silnika</option>
+            <option value="Układ hamulcowy">Układ hamulcowy</option>
+            <option value="Zawieszenie">Zawieszenie</option>
+            <option value="Układ wydechowy">Układ wydechowy</option>
+            <option value="Wymiana akumulatora">Wymiana akumulatora</option>
+            <option value="Kontrola przed zakupem">Kontrola przed zakupem</option>
+            <option value="Przeglądy okresowe">Przeglądy okresowe</option>
+        </select>
+        <h2>
+           <span class="line-title"> Wybierz markę swojego samochodu:</span>
+        </h2>
+        <select id="brandSelect">
+            <option value="ford">Ford</option>
+            <option value="opel">Opel</option>
+            <option value="toyota">Toyota</option>
+            <option value="volkswagen">Volkswagen</option>
+            <option value="audi">Audi</option>
+            <option value="bmw">BMW</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="skoda">Skoda</option>
+            <option value="renault">Renault</option>
+            <option value="peugeot">Peugeot</option>
+            <option value="citroen">Citroen</option>
+            <option value="fiat">Fiat</option>
+            <option value="inne">Inne</option>
+        </select><br><br>
+        <button id="calculateBtn">
+            Oblicz cenę
+        </button>
+        <h2>
+            Szacunkowa cena usługi:
+        </h2>
+        <p id="cena">0 PLN</p>
+        
+    </main>
+    
+    <!-- Galeria zdjęć -->
+     
+    <section class="gallery-container" id="zdjecia">
+        <h2><span class="line-title">Galeria naszych prac</span></h2>
+        <div class="gallery">
+            <button class="gallery-btn prev" onclick="changeSlide(-1)">❮</button>
+            <div class="gallery-slides">
+                <div class="slide fade">
+                    <img src="zdjecie1.jpg" alt="Zdjęcie 1">
+                </div>
+                <div class="slide fade">
+                    <img src="zdjecie2.jpg" alt="Zdjęcie 2">
+                </div>
+                <div class="slide fade">
+                    <img src="zdjecie3.jpg" alt="Zdjęcie 3">
+                </div>
+                <div class="slide fade">
+                    <img src="zdjecie4.jpg" alt="Zdjęcie 4">
+                </div>
+            </div>
+            <button class="gallery-btn next" onclick="changeSlide(1)">❯</button>
+        </div>
+        <div class="gallery-dots">
+            <span class="dot" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </section>
+     
+    <footer>
+        <a href="mailto:ewtom@wp.pl">Kontakt</a>
+    </footer>
+
+<script>
+(function(){
+    // losowe ceny bazowe dla usług (w PLN) - generowane raz przy wczytaniu
+    const cenyUslug = {
+        "Kontrola ciśnienia w oponach": 10,
+        "Kontrola oświetlenia": 15,
+        "Kontrola płynu chłodniczego":20, 
+        "Wymiana rozrządu": 400,
+        "Naprawy silnika": 500, 
+        "Układ hamulcowy": 150,
+        "Zawieszenie": 120,
+        "Układ wydechowy": 100,
+        "Wymiana akumulatora": 200,
+        "Kontrola przed zakupem": 80,
+        "Przeglądy okresowe": 120
+    };
+
+    const services = {};
+    Object.keys(cenyUslug).forEach(key => {
+        services[key] = cenyUslug[key];
+    });
+
+    // mnożniki w zależności od marki
+    const brandMultiplier = {
+        ford: 1.00,
+        opel: 0.98,
+        toyota: 1.02,
+        volkswagen: 1.05,
+        audi: 1.18,
+        bmw: 1.20,
+        mercedes: 1.22,
+        skoda: 1.03,
+        renault: 0.99,
+        peugeot: 1.00,
+        citroen: 1.00,
+        fiat: 0.95,
+        inne: 1.00
+    };
+
+    const btn = document.getElementById('calculateBtn');
+    const serviceSelect = document.getElementById('serviceSelect');
+    const brandSelect = document.getElementById('brandSelect');
+    const cenaEl = document.getElementById('cena');
+
+    btn.addEventListener('click', function(){
+        const service = serviceSelect.value;
+        const brand = brandSelect.value;
+        const base = services[service] || 0;
+        const mult = brandMultiplier[brand] || 1;
+        const finalPrice = Math.round(base * mult);
+
+        cenaEl.innerHTML = `<span class="cennik">${finalPrice} PLN (Usługa: ${service}, Marka: ${brand})</span>`;
+    });
+
+    // opcjonalnie pokaż w konsoli wylosowane ceny (do weryfikacji)
+    console.log('Wylosowane ceny usług:', services);
+})();
+</script>
+
+<!-- JavaScript dla galerii -->
+<script>
+let slideIndex = 0;
+
+function changeSlide(n) {
+    showSlide(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlide(slideIndex = n);
+}
+
+function showSlide(n) {
+    const slides = document.getElementsByClassName("slide");
+    const dots = document.getElementsByClassName("dot");
+    
+    if (n >= slides.length) {
+        slideIndex = 0;
+    }
+    if (n < 0) {
+        slideIndex = slides.length - 1;
+    }
+    
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    
+    slides[slideIndex].style.display = "block";
+    dots[slideIndex].className += " active";
+}
+
+// Wyświetl pierwsze zdjęcie na starcie
+showSlide(0);
+</script>
+
+</body>
+</html>
